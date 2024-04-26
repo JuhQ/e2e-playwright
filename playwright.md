@@ -355,6 +355,52 @@ Example of a failing test case:
         at /home/juhataur/Code/metropolia/end-to-end/examples/webpage/tests/webpage.spec.js:16:39
 ```
 
+### Starting both backend and frontend
+
+If you have backend and frontend in separate systems (folders, git repos etc), you can configure Playwright to run each of these separately. Playwright will start the servers in separate processes, and run the tests against them.
+
+Edit `playwright.config.js` file, change webServer configuration to be an array of objects. Each object should have a `command` and `url` properties. The `command` should be the command to start the server, and the `url` should be the URL of the server.
+
+```javascript
+webServer: [
+  {
+    command: "cd backend/ && npm run start",
+    url: `http://127.0.0.1:${process.env.BACKEND_PORT}`,
+    reuseExistingServer: !process.env.CI,
+  },
+  {
+    command: "cd frontend/ && npm run start",
+    url: `http://127.0.0.1:${process.env.FRONTEND_PORT}`,
+    reuseExistingServer: !process.env.CI,
+  },
+],
+```
+
+Adding `BACKEND_PORT` and `FRONTEND_PORT` to the `.env` file might be a good idea.
+
+```
+PORT=3040
+BACKEND_PORT=3001
+FRONTEND_PORT=3000
+```
+
+They can also be hardcoded into the `playwright.config.js` file.
+
+```javascript
+webServer: [
+  {
+    command: "cd backend/ && npm run start",
+    url: `http://localhost:3001`,
+    reuseExistingServer: !process.env.CI,
+  },
+  {
+    command: "cd frontend/ && npm run start",
+    url: `http://localhost:3000`,
+    reuseExistingServer: !process.env.CI,
+  },
+],
+```
+
 ## Real browsers
 
 For each test case, playwright will start multiple browsers, run the test cases, and generate a report. The report will show the test case name, the browser used, the status of the test case, and the time it took to run the test case. By default playwright will run the tests in three browsers, Chrome, Firefox, and WebKit. It can be configured to run the tests in a specific browser, or multiple browsers, or specific devices.
@@ -878,7 +924,7 @@ Study the [Playwright best practices](https://playwright.dev/docs/best-practices
 ## More resources
 
 - [Playwright documentation](https://playwright.dev/docs/intro)
-- [Wikipedia entry](https://en.wikipedia.org/wiki/Playwright_(software))
+- [Wikipedia entry](<https://en.wikipedia.org/wiki/Playwright_(software)>)
 - [Youtube: Playwright channel](https://www.youtube.com/channel/UC46Zj8pDH5tDosqm1gd7WTg)
 - [Youtube: Playwright Episode 2 - Getting Started](https://www.youtube.com/watch?v=JdMkZUePkSE&list=PLQ6Buerc008ed-F9OksF7ek37wR3y916p&index=2)
 - [VSCode extension in docs](https://playwright.dev/docs/getting-started-vscode)
