@@ -21,7 +21,7 @@ If you are familiar or interested in Cypress, read this comparison between [Cypr
 
 ## Installation
 
-To install Playwright, run the following command in your terminal, in the root directory of your project:
+To install Playwright, run the following command in your terminal, in the root directory of your project. Note, this will not install playwright globally, but only for the project.
 
 ```bash
 npm init playwright@latest
@@ -31,7 +31,7 @@ This setup tool will ask some basic questions. Choose javascript.
 
 ![playwright init](./images/playwright-init.png)
 
-This will generate folders called `tests` and `tests-examples`, alongside with `playwright.config.js` file. It will also update`package.json` to include the necessary dependencies, and `.gitignore` file to ignore generated files and node_modules.
+This will generate folders called `tests` and `tests-examples`, alongside with `playwright.config.js` file. It will also update`package.json` to include the necessary dependencies, and `.gitignore` file to ignore generated playwright files and node_modules.
 
 The setup will also output helpful information about how to run the tests.
 
@@ -70,13 +70,15 @@ Familiarize yourself with the documentation: [https://playwright.dev/docs/intro]
 
 ### npm install & Playwright missing browsers
 
-When cloning a project which already contains Playwright tests, the dependency installation might not be enough. The Playwright browsers need to be installed. This can be done by running the `npx playwright install` command.
+This step can be skipped when installing Playwright for the first time in a project with the `npm init playwright@latest` command.
+
+When/if cloning a project which already contains Playwright tests, the dependency installation might not be enough. The Playwright browsers need to be installed. This can be done by running the `npx playwright install` command.
 
 ```bash
 npx playwright install
 ```
 
-This will install the necessary browsers, such as Chrome, Firefox, and WebKit, to run the test cases.
+This will install the necessary browsers, such as Chrome, Firefox, and WebKit, to run the test cases. Note that these browsers are installed for Playwright, and they are not installed globally on the system for general use.
 
 If you do not run this command, test cases will not be executed, instead you will see something like this:
 
@@ -98,7 +100,7 @@ After the browsers are installed, the test cases can be executed.
 
 After the initialisation, the `playwright.config.js` file will be generated. This file is used to configure the test runner, set the test environment, and define the test settings.
 
-Based on the selections, the default config might look like this:
+Based on the selections, the default config might look like this. We do not need to change anything for now.
 
 ```javascript
 // @ts-check
@@ -181,7 +183,7 @@ module.exports = defineConfig({
 });
 ```
 
-You might want to remove the comments on the `webserver` config.
+Altough we might want to remove the comments on the `webserver` config.
 
 ```javascript
 /* Run your local dev server before starting the tests */
@@ -203,6 +205,8 @@ Now Playwright will start the local server before running the tests. This is use
 ```
 
 Now we do not need to manually start our server when running the tests.
+
+You can set the `command: "npm run start"` to be something else if you wish. Might be useful to start the dev server in watch mode, if tests fail because of the server having some bugs in it.
 
 ### Note about ports (this part only needed if port 3000 is already in use)
 
