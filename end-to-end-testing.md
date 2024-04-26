@@ -34,11 +34,11 @@ Note that manual testing is still part of daily programming activities, to make 
 
 ## End-to-end testing vs integration testing
 
-End-to-end testing and integration testing are two different types of software testing methodologies. End-to-end testing is used to test the entire application flow from start to finish, while integration testing is used to test the interaction between different components of the application. End-to-end testing is performed after integration testing. Integration testing is used to test the interaction between different components of the application, while end-to-end testing is used to test the entire application flow from start to finish.
+End-to-end testing and integration testing are two different types of software testing methodologies. End-to-end testing is used to test the entire application flow from start to finish, while integration testing is used to test the interaction between different components of the application. End-to-end testing is performed after integration testing.
 
-End-to-end testing is performed from the user's perspective to ensure that the application behaves as expected. It is used to validate the system under test and its components. End-to-end testing is used to simulate real user scenarios and ensure that the application works as expected.
+End-to-end testing is performed from the user's perspective to ensure that the application behaves as expected. It is used to simulate real user scenarios and ensure that the application works as expected.
 
-Integration testing is used to test the interaction between different components of the application. It is used to validate that the components work together as expected. Integration testing is used to test the interaction between different modules, services, or systems.
+Integration testing is used to test the interaction between different components of the application. Integration testing is used to test the interaction between different modules, services, or systems, and that the components work together as expected
 
 
 ## Common test terminology
