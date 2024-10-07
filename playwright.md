@@ -183,7 +183,7 @@ module.exports = defineConfig({
 });
 ```
 
-Altough we might want to remove the comments on the `webserver` config.
+Although we might want to remove the comments on the `webserver` config.
 
 ```javascript
 /* Run your local dev server before starting the tests */
@@ -838,7 +838,7 @@ export default defineConfig({
 
 Now running the test runner, `playwright-report` folder will contain the trace files as zip files and a `trace` folder.
 
-These trace files can be viewed [https://trace.playwright.dev/](https://trace.playwright.dev/) or through the test runner by running `npx playwright show-trace` command. This will open similar view to the website, or as the `npx playwight test --ui` command. After this you choose the trace file from the trace folder and you can see how the test case was executed.
+These trace files can be viewed [https://trace.playwright.dev/](https://trace.playwright.dev/) or through the test runner by running `npx playwright show-trace` command. This will open similar view to the website, or as the `npx playwright test --ui` command. After this you choose the trace file from the trace folder and you can see how the test case was executed.
 
 For now, the trace config should be `trace: 'on-first-retry'` to save disk space and time, and to only catch the failing test cases.
 
