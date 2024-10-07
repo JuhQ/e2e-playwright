@@ -25,7 +25,7 @@ End-to-end testing can be performed manually by following the steps of the appli
 
 However, manual testing is not scalable. It is difficult to test the application flow multiple times, and it is hard to catch all the edge cases. Automated testing is preferred because it is faster, more reliable, and can be run multiple times, with multiple different devices, configurations etc.
 
-Imaging that after each larger change you would manually test the application flow in multiple browsers, devices, and configurations. Human intervention is always prone to errors. Testing the changes on a laptop, couple different mobile devices, and different browsers is a tedious task manually, which will result in forgotten steps. Also the cost increases as the number of devices and configurations increases. Automation can simulate different devices, or some services, such as browserstack, provides an array or real devices with different settings.
+Imaging that after each larger change you would manually test the application flow in multiple browsers, devices, and configurations. Human intervention is always prone to errors. Testing the changes on a laptop, couple different mobile devices, and different browsers is a tedious task manually, which will result in forgotten steps. Also the cost increases as the number of devices and configurations increases. Automation can simulate different devices, or some services, such as browserstack, provides an array of real devices with different settings.
 
 Manual testing often can not be executed in parallel.
 
