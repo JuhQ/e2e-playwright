@@ -554,6 +554,100 @@ test("page has button with test id 'submit-button'", async ({ page }) => {
 });
 ```
 
+### BeforeEach and afterEach
+
+Often, we need to do some setup before running the test cases, and some cleanup after running the test cases. This can be done with the `beforeEach` and `afterEach` functions.
+
+`beforeEach` and `afterEach` are functions, which are called outside of the `test` function.
+
+#### beforeEach
+
+The `beforeEach` function is used to define the setup behavior, which is run before each test case. This behavior might include navigating to a page, filling a form, signing in, or any other test environment setup.
+
+
+Example of navigating to a page before each test case:
+
+```javascript
+beforeEach(async ({ page }) => {
+  await page.goto("http://localhost:3000");
+});
+```
+
+Integrating `beforeEach` to a test case might look like this:
+
+```javascript
+import { expect, test } from "@playwright/test";
+
+beforeEach(async ({ page }) => {
+  await page.goto("http://localhost:3000");
+});
+
+test("has title", async ({ page }) => {
+  // test for full title (fails)
+  // await expect(page).toHaveTitle("Test page");
+
+  // test that title contains "Test page" as substring
+  await expect(page).toHaveTitle(/Test page/);
+});
+
+test("page has image of Helsinki", async ({ page }) => {
+  await expect(page.getByRole("img")).toBeVisible();
+  await expect(page.getByRole("img")).toHaveAttribute(
+    "alt",
+    "City of Helsinki envisioned by AI"
+  );
+});
+```
+
+Now we do not need to navigate to the page in each test case, as the `beforeEach` function will navigate to the page before each test case, saving us time and making the test cases more readable.
+
+#### afterEach
+
+Similarly, the `afterEach` function is used to define the cleanup behavior, which is run after each test case. This behavior might include logging out, deleting data, or any other test environment cleanup.
+
+Example of user logout after each test case:
+
+```javascript
+afterEach(async ({ page }) => {
+  await page.click('button[data-testid="logout-button"]');
+});
+```
+
+Integrating `afterEach` to a test case might look like this:
+
+```javascript
+import { expect, test } from "@playwright/test";
+
+beforeEach(async ({ page }) => {
+  await page.goto("http://localhost:3000");
+});
+
+
+afterEach(async ({ page }) => {
+  await page.click('button[data-testid="logout-button"]');
+});
+
+test("has title", async ({ page }) => {
+  // test for full title (fails)
+  // await expect(page).toHaveTitle("Test page");
+
+  // test that title contains "Test page" as substring
+  await expect(page).toHaveTitle(/Test page/);
+});
+
+test("page has image of Helsinki", async ({ page }) => {
+  await expect(page.getByRole("img")).toBeVisible();
+  await expect(page.getByRole("img")).toHaveAttribute(
+    "alt",
+    "City of Helsinki envisioned by AI"
+  );
+});
+```
+
+In this case, the user is logged out after each test case, ensuring that the user is logged out before the next test case is run. Note that in the next test case, the user might need to log in again, which can be done in the `beforeEach` function.
+
+The `beforeEach` and `afterEach` functions can be used together to define the setup and cleanup behavior for the test cases, ensuring automation of the test environment setup and cleanup.
+
 ### More testing methods
 
 More testing methods can be found in the [Methods section](https://playwright.dev/docs/api/class-page#methods) of the Playwright documentation.
