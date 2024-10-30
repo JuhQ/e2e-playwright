@@ -556,19 +556,16 @@ test("page has button with test id 'submit-button'", async ({ page }) => {
 
 ### BeforeEach and afterEach
 
-Often, we need to do some setup before running the test cases, and some cleanup after running the test cases. This can be done with the `beforeEach` and `afterEach` functions.
-
-`beforeEach` and `afterEach` are functions, which are called outside of the `test` function.
+Often, we need to do some setup before running the test cases, and some cleanup after running the test cases. This can be done with the `beforeEach` and `afterEach` methods.
 
 #### beforeEach
 
-The `beforeEach` function is used to define the setup behavior, which is run before each test case. This behavior might include navigating to a page, filling a form, signing in, or any other test environment setup.
-
+The `beforeEach` method is used to define the setup behavior, which is run before each test case. This behavior might include navigating to a page, filling a form, signing in, or any other test environment setup.
 
 Example of navigating to a page before each test case:
 
 ```javascript
-beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3000");
 });
 ```
@@ -578,7 +575,7 @@ Integrating `beforeEach` to a test case might look like this:
 ```javascript
 import { expect, test } from "@playwright/test";
 
-beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3000");
 });
 
@@ -599,16 +596,16 @@ test("page has image of Helsinki", async ({ page }) => {
 });
 ```
 
-Now we do not need to navigate to the page in each test case, as the `beforeEach` function will navigate to the page before each test case, saving us time and making the test cases more readable.
+Now we do not need to navigate to the page in each test case, as the `beforeEach` method will navigate to the page before each test case, saving us time and making the test cases more readable.
 
 #### afterEach
 
-Similarly, the `afterEach` function is used to define the cleanup behavior, which is run after each test case. This behavior might include logging out, deleting data, or any other test environment cleanup.
+Similarly, the `afterEach` method is used to define the cleanup behavior, which is run after each test case. This behavior might include logging out, deleting data, or any other test environment cleanup.
 
 Example of user logout after each test case:
 
 ```javascript
-afterEach(async ({ page }) => {
+test.afterEach(async ({ page }) => {
   await page.click('button[data-testid="logout-button"]');
 });
 ```
@@ -618,12 +615,11 @@ Integrating `afterEach` to a test case might look like this:
 ```javascript
 import { expect, test } from "@playwright/test";
 
-beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3000");
 });
 
-
-afterEach(async ({ page }) => {
+test.afterEach(async ({ page }) => {
   await page.click('button[data-testid="logout-button"]');
 });
 
@@ -644,9 +640,11 @@ test("page has image of Helsinki", async ({ page }) => {
 });
 ```
 
-In this case, the user is logged out after each test case, ensuring that the user is logged out before the next test case is run. Note that in the next test case, the user might need to log in again, which can be done in the `beforeEach` function.
+In this case, the user is logged out after each test case, ensuring that the user is logged out before the next test case is run. Note that in the next test case, the user might need to log in again, which can be done in the `beforeEach` method.
 
-The `beforeEach` and `afterEach` functions can be used together to define the setup and cleanup behavior for the test cases, ensuring automation of the test environment setup and cleanup.
+The `beforeEach` and `afterEach` methods can be used together to define the setup and cleanup behavior for the test cases, ensuring automation of the test environment setup and cleanup.
+
+Read more in the playwright [beforeEach](https://playwright.dev/docs/api/class-test#test-before-each) and [afterEach](https://playwright.dev/docs/api/class-test#test-after-each) docs.
 
 ### More testing methods
 
