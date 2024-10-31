@@ -21,13 +21,13 @@ If you are familiar or interested in Cypress, read this comparison between [Cypr
 
 ## Installation
 
-To install Playwright, run the following command in your terminal, in the root directory of your project. Note, this will not install playwright globally, but only for the project.
+To install Playwright, run the following npm command in your command line (CLI) terminal, in the root directory of your project. Note, this will not install playwright globally, only for the project where the command is run.
 
 ```bash
 npm init playwright@latest
 ```
 
-This setup tool will ask some basic questions. Choose javascript.
+This setup tool will ask some basic questions. Choose JavaScript.
 
 ![playwright init](./images/playwright-init.png)
 
@@ -59,9 +59,9 @@ We suggest that you begin by typing:
     npx playwright test
 
 And check out the following files:
-  - ./tests/example.spec.ts - Example end-to-end test
-  - ./tests-examples/demo-todo-app.spec.ts - Demo Todo App end-to-end tests
-  - ./playwright.config.ts - Playwright Test configuration
+  - ./tests/example.spec.js - Example end-to-end test
+  - ./tests-examples/demo-todo-app.spec.js - Demo Todo App end-to-end tests
+  - ./playwright.config.js - Playwright Test configuration
 ```
 
 Before continuing, try most of these commands and have a look at the tests folders. Double check package.json file to see the dependencies that were added.
@@ -72,7 +72,7 @@ Familiarize yourself with the documentation: [https://playwright.dev/docs/intro]
 
 This step can be skipped when installing Playwright for the first time in a project with the `npm init playwright@latest` command.
 
-When/if cloning a project which already contains Playwright tests, the dependency installation might not be enough. The Playwright browsers need to be installed. This can be done by running the `npx playwright install` command.
+When cloning a project already containing Playwright tests, the package dependency installation might not be enough. The Playwright browsers need to be installed as well by running the `npx playwright install` command.
 
 ```bash
 npx playwright install
@@ -110,7 +110,7 @@ const { defineConfig, devices } = require("@playwright/test");
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
+// require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -176,8 +176,8 @@ module.exports = defineConfig({
 
   /* Run your local dev server before starting the tests */
   // webServer: {
-  //   command: "npm run start",
-  //   url: "http://127.0.0.1:3000",
+  //   command: 'npm run start',
+  //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
 });
@@ -226,7 +226,7 @@ In terminal:
 npm install dotenv
 ```
 
-Now you can uncomment the line `require('dotenv').config();` from the `playwright.config.js` file. This will load the environment variables from the `.env` file to the test cases.
+Now you can uncomment the line `// require('dotenv').config({ path: path.resolve(__dirname, '.env') });` from the `playwright.config.js` file. This will load the environment variables from the `.env` file to the test cases.
 
 And finally edit `playwright.config.js` file to use the port from the environment variables.
 
@@ -239,6 +239,16 @@ webServer: {
 ```
 
 Have a look at the example test suite in [examples/webpage/tests/webpage.spec.js](examples/webpage/tests/webpage.spec.js)
+
+### Are you seeing path error in your editor?
+
+![Visual Studio Code path resolve error](images/path-resolve-error.png)
+
+If you are seeing this error in the editor, you can fix it by adding the following to the top of the `playwright.config.js` file:
+
+```javascript
+const path = require("path");
+```
 
 ## Running tests
 
