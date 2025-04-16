@@ -9,16 +9,6 @@ As Playwright is backed by Microsoft, the documentation is world-class and the t
 - [Playwright documentation](https://playwright.dev/docs/intro)
 - [NPM package](https://www.npmjs.com/package/playwright)
 
-## Other tools
-
-Other similar tools exist, such as Puppeteer and Cypress. Playwright has been gaining much popularity in recent years, as is visible in [npm trends](https://npmtrends.com/cypress-vs-playwright-vs-puppeteer).
-
-One of the main benefits (along many) with Playwright is that it executes the tests in real browsers, through their APIs, using Node.js. The browsers run in headless mode in the background. Other libraries utilise similar approaches, for example Cypress runs tests inside a browser (Chrome).
-
-As the tests are executed in a real browser, the tests are more reliable and closer to the real user experience. This is important when testing web applications, as the user interacts with the application through a web browser. We can also simulate different devices and screen sizes to ensure that the application works as expected in different scenarios.
-
-If you are familiar or interested in Cypress, read this comparison between [Cypress and Playwright](https://testsigma.com/blog/playwright-vs-cypress/).
-
 ## Installation
 
 To install Playwright, run the following npm command in your command line (CLI) terminal, in the root directory of your project. Note, this will not install playwright globally, only for the project where the command is run.
@@ -1022,6 +1012,16 @@ The `npm init playwright@latest` command can generate a `.github` folder with th
 ## Best practices
 
 Study the [Playwright best practices](https://playwright.dev/docs/best-practices) page to learn how to write good test cases, how to structure the test cases, and how to run the test cases.
+
+## Other tools
+
+Other similar tools exist, such as Puppeteer and Cypress. Playwright has been gaining much popularity in recent years, as is visible in [npm trends](https://npmtrends.com/cypress-vs-playwright-vs-puppeteer).
+
+One of the main benefits (along many) with Playwright is that it executes the tests in real browsers, through their APIs, using Node.js. The browsers run in headless mode in the background. Other libraries utilise similar approaches, for example Cypress runs tests inside a browser (Chrome).
+
+As the tests are executed in a real browser, the tests are more reliable and closer to the real user experience. This is important when testing web applications, as the user interacts with the application through a web browser. We can also simulate different devices and screen sizes to ensure that the application works as expected in different scenarios.
+
+If you are familiar or interested in Cypress, read this comparison between [Cypress and Playwright](https://testsigma.com/blog/playwright-vs-cypress/).
 
 ## More resources
 
